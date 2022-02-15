@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+  body{
+    background: #363434;
+    padding: 80px 0 0 0;
+    font-family: roboto, sans-serif;
+  }
+
+  header{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: #000000;
+  }
+
+  h1{
+    color: #d6d6d6;
+    font-size: 30px;
+    font-weight: bold;
+    float: left;
+  }
+
+  h2{
+    color: #d6d6d6;
+  }
+
+  h3{
+    color: #d6d6d6;
+  }
+
+  p{
+    color: #d6d6d6;
+  }
+
+  .title{
+    color: #d6d6d6;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .container{
+    width:100%;
+    float:left;
+    padding:15px;
+  }
+
+  .column{
+    float:left;
+    width:30%;
+    margin: 5px;
+  }
+  .columnComp{
+    float:left;
+    width:16%;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .columnPart{
+    float:left;
+    width:30%;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .columnParam{
+    float:left;
+    width:16%;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .flexbox{
+    display: flex;
+    flex-direction: row;
+  }
+  .vertFlexbox{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown{
+    color: #d6d6d6;
+  }
+
+  #runAnalysis{
+    fill: #363434;
+    width: 30px;
+    height: 30px;
+  }

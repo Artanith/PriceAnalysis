@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pricing Analysis</title>
+    <meta charset="utf-8">
+
+    <!-- Roboto font embed -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+    <!-- Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="Resources/CSS/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Price Analysis</h1>
+    </header>
+
+    <div class="container">
+      <div class="column">
+      <!-- Enter Competitor Information -->
+        <h2>Competitors</h2>
+        <p>Enter Data for Compititors Bidding</p>
+          <div class="vertFlexbox">
+            <input type="text" placeholder="Enter Competitor Name" id="compName">
+            <input type="number" placeholder="Enter Competitor Gross Profit %" id="compGP">
+            <input type="number" placeholder="Enter Competitor Wage" id="compWage">
+            <input type="number" placeholder="Enter Competitor Material Overhead %" id="compMOH">
+            <input type="number" placeholder="Enter Competitor Labor Overhead %" id="compLOH">
+            <div class="dropdown">
+              <label for="vert">Is the company vertically integrated? </label>
+              <select name="vert" id="vert">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+          </div>
+      </div>
+
+      <div class="column">
+      <!-- Enter Information for Parts Being Quoted -->
+        <h2>Part Information</h2>
+        <p>Enter Part Data Being Priced</p>
+          <div class="vertFlexbox">
+            <input type="text" placeholder="Enter Part Number" id="partNum">
+            <input type="number" placeholder="Material Cost" id="matCost">
+            <input type="number" placeholder="Hours to Build" id="buildTime">
+          </div>
+      </div>
+
+      <div class="column">
+        <!-- Set analysis parameters including varaition and sigma values -->
+        <h2>Analysis Attributes</h2>
+        <p>Set Analysis Attributes or Use Default Shown</p>
+          <div class="vertFlexbox">
+            <input type="number" placeholder="% Variation in GP" id="varGP">
+            <input type="number" placeholder="% Variation in Wage" id="varWage">
+            <input type="number" placeholder="% Variation in LOH" id="varLOH">
+            <input type="number" placeholder="% Variation in MOH" id="varMOH">
+            <input type="number" placeholder="% Variation in Build Time" id="varBuildTime">
+            <input type="number" placeholder="% Variation in Material Cost" id="varMat">
+          </div>
+      </div>
+    </div>
+
+    <!--Add Buttons-->
+    <div class="container">
+      <div class="column">
+        <button id="addComp">Add Competitor</button>
+      </div>
+      <div class="column">
+        <button id="addPart">Add Part</button>
+      </div>
+      <div class="column">
+        <button id="upAttri">Update Attributes</button>
+      </div>
+    </div>
+
+    <!-- Show Competitor and Part Data as User is Entering -->
+    <h2>Analysis Data</h2>
+
+      <div class="container">
+        <!-- Show Competitor Data When User Entered -->
+        <div class="column">
+          <h3>Competitors Entered</h3>
+          <div class="container">
+            <ul class="columnComp" id="Name"><li class="title">Competitor</li></ul>
+            <ul class="columnComp" id="GP"><li class="title">GP %</li></ul>
+            <ul class="columnComp" id="Wage"><li class="title">Wage</li></ul>
+            <ul class="columnComp" id="Vert"><li class="title">Vertical</li></ul>
+            <ul class="columnComp" id="MatOH"><li class="title"> MOH</li></ul>
+            <ul class="columnComp" id="LOH"><li class="title">LOH</li></ul>
+          </div>
+        </div>
+
+      <!-- Show Part Data When User Entered -->
+        <div class="column">
+          <h3>Parts Entered</h3>
+          <div class="container">
+            <ul class="columnPart" id="pNumber"><li class="title">Part Number</li></ul>
+            <ul class="columnPart" id="mCost"><li class="title">Material Cost</li></ul>
+            <ul class="columnPart" id="Time"><li class="title">Build Time</li></ul>
+          </div>
+        </div>
+
+        <!-- Show Analysis Parameters When User Entered -->
+        <div class="column">
+          <h3>Analysis Variation Entered</h3>
+          <div class="container">
+            <ul class="columnParam" id="perGP"><li class="title">GP</li></ul>
+            <ul class="columnParam" id="perWage"><li class="title">Wage</li></ul>
+            <ul class="columnParam" id="perLOH"><li class="title">LOH</li></ul>
+            <ul class="columnParam" id="perMOH"><li class="title">MOH</li></ul>
+            <ul class="columnParam" id="perTime"><li class="title">Build Time</li></ul>
+            <ul class="columnParam" id="perMat"><li class="title">Material Cost</li></ul>
+          </div>
+        </div>
+      </div>
+
+    <!-- Set analysis parameters including varaition and sigma values -->
+    <h2>Run Analysis</h2>
+    <button id="runAnalysis">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"> <path style="fill:#7BD9BF;" d="M488.727,0H256H23.273C10.42,0,0,10.42,0,23.273v465.455C0,501.58,10.42,512,23.273,512H256h232.727 C501.58,512,512,501.58,512,488.727V23.273C512,10.42,501.58,0,488.727,0z"/> <g> <polygon style="fill:#305557;" points="367.632,236.266 256,166.495 256,166.495 "/> <path style="fill:#305557;" d="M256,345.505l111.632-69.769L256,345.505z"/> </g> <path style="fill:#66B4BA;" d="M200.068,380.463c-3.767,2.354-8.048,3.537-12.336,3.537c-3.88,0-7.765-0.968-11.281-2.917 c-7.401-4.101-11.992-11.895-11.992-20.356V151.273c0-8.46,4.591-16.255,11.992-20.356c7.402-4.102,16.443-3.863,23.617,0.619 L256,166.495V0H23.273C10.42,0,0,10.42,0,23.273v465.455C0,501.58,10.42,512,23.273,512H256V345.505L200.068,380.463z"/> <path style="fill:#549498;" d="M367.632,236.266L256,166.495l-55.932-34.957c-7.174-4.482-16.215-4.721-23.617-0.619 c-7.399,4.099-11.99,11.894-11.99,20.354v209.455c0,8.46,4.591,16.254,11.992,20.356c3.516,1.949,7.401,2.917,11.281,2.917 c4.288,0,8.569-1.184,12.336-3.537L256,345.505l111.632-69.769c6.805-4.253,10.938-11.711,10.938-19.735 C378.57,247.977,374.436,240.519,367.632,236.266z"/>
+    </button>
+    <!-- Show Results Once Analysis Is Run -->
+    <h2>Anlysis Results</h2>
+
+      <p>Results from Analysis</P>
+      <div class="container">
+        <ul class="columnParam" id="outName"><li class="title">Competitor</li></ul>
+        <ul class="columnParam" id="outPart"><li class="title">Part Number</li></ul>
+        <ul class="columnParam" id="outMin"><li class="title">Min Price</li></ul>
+        <ul class="columnParam" id="outMax"><li class="title">Max Price</li></ul>
+        <ul class="columnParam" id="likelyMin"><li class="title">Most Likely Min</li></ul>
+        <ul class="columnParam" id="likelyMax"><li class="title">Most Likely Max</li></ul>
+      </div>
+      <!-- Javascript Files -->
+      <script src="Resources/JS/main.js"></script>
+  </body>
+</html>
