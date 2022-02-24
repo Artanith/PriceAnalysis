@@ -30,20 +30,25 @@
 
   h3{
     color: #d6d6d6;
+    text-decoration: underline;
+    font-weight: bold;
   }
 
   p{
     color: #d6d6d6;
   }
 
+  input{
+    width: 97%
+  }
+
   .title{
     color: #d6d6d6;
     text-decoration: underline;
-    font-weight: bold;
   }
 
   .container{
-    width:100%;
+    width:95%;
     float:left;
     padding:15px;
   }
@@ -51,8 +56,9 @@
   .column{
     float:left;
     width:30%;
-    margin: 5px;
+    margin: 1%;
   }
+
   .columnComp{
     float:left;
     width:16%;
@@ -93,8 +99,17 @@
     color: #d6d6d6;
   }
 
+  .boxed{
+    background-color: #555555;
+    margin: 15px 0 0 5px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .inputBox{
+    height: 150px;
+  }
+
   #runAnalysis{
-    fill: #363434;
-    width: 30px;
-    height: 30px;
+    margin-left: 15px;
   }

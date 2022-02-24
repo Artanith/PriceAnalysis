@@ -14,6 +14,7 @@ var competitor = function (Name, GrossProfit, Wage, Vertical, MatOH, LabOH){
   this.allCompetitors = function (){allCompetitors.push(this)}; //Set function to push object to array
   this.allCompetitors(); //push obect to array
 };
+
 //Add competitors
 function grabData(boxID) {
   var pull = document.getElementById(boxID);
@@ -24,42 +25,46 @@ function grabData(boxID) {
 
 //Add compitor information to comp list
 document.getElementById('addComp').addEventListener('click', function(){
+  var compName = grabData("compName");
+  var compGP = parseFloat(grabData("compGP"));
+  var compWage = parseFloat(grabData("compWage"));
+  var compMOH = parseFloat(grabData("compMOH"));
+  var compLOH = parseFloat(grabData("compLOH"));
+  var vert = grabData("vert");
 
-var compName = grabData("compName");
-var compGP = parseFloat(grabData("compGP"));
-var compWage = parseFloat(grabData("compWage"));
-var compMOH = parseFloat(grabData("compMOH"));
-var compLOH = parseFloat(grabData("compLOH"));
-var vert = grabData("vert");
+  if(compName && compGP && compWage && compMOH && compLOH && vert){
+    //Transform from percent to decimal to store
+    var compGPdec = compGP/100;
+    var compMOHdec = compMOH/100;
+    var compLOHdec = compLOH/100;
+    var vertDisp = vert;
+    if(vert === "yes"){vert = true} else{vert = false};
 
-//Transform from percent to decimal to store
-var compGPdec = compGP/100;
-var compMOHdec = compMOH/100;
-var compLOHdec = compLOH/100;
-var vertDisp = vert;
-if(vert === "yes"){vert = true} else{vert = false};
+    //Set up for displaying
+    compGP = compGP + "%";
+    compMOH = compMOH + "%";
+    compLOH = compLOH + "%";
+    var compWageDisp = "$" + compWage;
 
-//Set up for displaying
-compGP = compGP + "%";
-compMOH = compMOH + "%";
-compLOH = compLOH + "%";
-var compWageDisp = "$" + compWage;
+    //Enter into HTML Competitor List
+    var compData = [compName, compGP, compWageDisp, vertDisp, compMOH, compLOH];
+    var compAttri = ['Name', 'GP', 'Wage', 'Vert', 'MatOH', 'LOH'];
 
-//Enter into HTML Competitor List
-var compData = [compName, compGP, compWageDisp, vertDisp, compMOH, compLOH];
-var compAttri = ['Name', 'GP', 'Wage', 'Vert', 'MatOH', 'LOH'];
+    for (var i = 0; i < compData.length; i++) {
+      var list = document.getElementById(compAttri[i]);
 
-for (var i = 0; i < compData.length; i++) {
-  var list = document.getElementById(compAttri[i]);
+      var item = document.createElement('li')
+      item.innerText = compData[i];
 
-  var item = document.createElement('li')
-  item.innerText = compData[i];
+      list.appendChild(item);
+    };
 
-  list.appendChild(item);
-};
-
-//Enter into competitor constructor
-new competitor(compName, compGPdec, compWage, vert, compMOHdec, compLOHdec);
+    //Enter into competitor constructor
+    new competitor(compName, compGPdec, compWage, vert, compMOHdec, compLOHdec);
+    //Give Error if test field were blank
+  } else {
+    window.confirm("Information Left Blank - Please Fill Out All Fields Before Submitting");
+  };
 });
 
 //Array to store parts from constructor
@@ -77,28 +82,33 @@ var part = function(partNumber, partCost, buildTime){
 // Add part
 document.getElementById('addPart').addEventListener('click', function(){
 
-var partNum = grabData("partNum");
-var matCost = parseFloat(grabData("matCost"));
-var buildTime = parseFloat(grabData("buildTime"));
+  var partNum = grabData("partNum");
+  var matCost = parseFloat(grabData("matCost"));
+  var buildTime = parseFloat(grabData("buildTime"));
 
-//Set up for displaying
-var matCostDisp = "$" + matCost;
+  if(partNum && matCost && buildTime){
+    //Set up for displaying
+    var matCostDisp = "$" + matCost;
 
-//Enter into HTML Competitor List
-var partData = [partNum, matCostDisp, buildTime];
-var partAttri = ['pNumber','mCost', 'Time'];
+    //Enter into HTML Competitor List
+    var partData = [partNum, matCostDisp, buildTime];
+    var partAttri = ['pNumber','mCost', 'Time'];
 
-for (var i = 0; i < partData.length; i++) {
-  var list = document.getElementById(partAttri[i]);
+    for (var i = 0; i < partData.length; i++) {
+      var list = document.getElementById(partAttri[i]);
 
-  var item = document.createElement('li')
-  item.innerText = partData[i];
+      var item = document.createElement('li');
+      item.innerText = partData[i];
 
-  list.appendChild(item);
-};
+      list.appendChild(item);
+    };
 
-//Enter into part constructor
-new part(partNum, matCost, buildTime);
+    //Enter into part constructor
+    new part(partNum, matCost, buildTime);
+
+  } else {
+    window.confirm("Information Left Blank - Please Fill Out All Fields Before Submitting");
+  };
 });
 
 //Set parameters for Monte Carlo
@@ -133,7 +143,7 @@ function displayParam(GP, lab, LOH, MOH, time, cost){
 
   //add updated values for attributes from user entered fields
   for (var i = 0; i < paramData.length; i++) {
-    var param = paramData[i]*100 + "%"
+    var param = paramData[i]*100 + "%";
 
     var list = document.getElementById(paramAttri[i]);
 
@@ -154,7 +164,11 @@ document.getElementById('upAttri').addEventListener('click', function() {
   timeVar = parseFloat(grabData('varBuildTime'))/100;
   ptCostVar = parseFloat(grabData('varMat'))/100;
 
-displayParam(GrossProfitVar, labVar, LOHVar, MOHVar, timeVar, ptCostVar);
+  if( GrossProfitVar && labVar && LOHVar && MOHVar && timeVar && ptCostVar){
+    displayParam(GrossProfitVar, labVar, LOHVar, MOHVar, timeVar, ptCostVar);
+  } else {
+    window.confirm("Information Left Blank - Please Fill Out All Fields Before Submitting");
+  };
 });
 
 //Random number function between two numbers
@@ -202,13 +216,11 @@ document.getElementById('runAnalysis').addEventListener('click', function(){
       //Output Monte Carlo Results
       for (var k = 0; k < outputLabels.length; k++) {
         var list = document.getElementById(outputLabels[k]);
-
         var item = document.createElement('li');
         item.innerText = outputValues[k];
 
         list.appendChild(item);
       };
     };
-
   };
 });
